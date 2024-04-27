@@ -39,7 +39,7 @@ export default function Home() {
     <>
       <div className="landing-bg h-[600px]">
         <div className="p-10 flex justify-between items-center">
-          <h1 className="text-3xl px-10 text-amber-400 select-none flex ">
+          <h1 className="text-3xl px-10 text-amber-400 select-none flex cursor-pointer">
             FInTracker
             <FaMoneyBillTrendUp className="ml-2" />
           </h1>
@@ -71,34 +71,15 @@ export default function Home() {
       <hr />
 
       <div className="landing-bg-sec h-80">
-        <div className=" flex justify-between items-center">
-          <div className=" px-20  text-white text-4xl w-[70%]">
-            Join now to take control of your finances. Sign up for free and start managing your money smarter.
-            <br />
-            <button className="link-btn ">
-              <p className="link-btn-p text-white underline hover:no-underline my-2">Subscribe</p>
-            </button>
+        <div className=" px-28 py-16 flex flex-col justify-center items-center text-white text-4xl w-[100%] mt-7 text-center tracking-wide">
+          <p> Take control of your finances now. Sign up for free and start managing your money smarter.</p>
 
-          </div>
-          <div className="mx-20 ">
-            <Image src={Icons?.Icons?.Homesvg} alt={""} className="w-80 mt-4 h-64"></Image>
-          </div>
-          {/* <div className="bg-amber-200 h-[400px] mx-20 -translate-y-14">
-            <div className="">
-              hello
-            </div>
-          </div> */}
-          {/* <div className=" flex flex-col gap-8">
-            <button className="primary-btn font-medium">
-              <span className="primary-btn-content p-10 h-10">Login </span>
-            </button>
-            <button className="sec-btn font-medium">
-              <span className="sec-btn-content">Register </span>
-            </button>
-          </div> */}
+          <p className="mt-1"> Click the button below to get started.</p>
+          <button className="primary-button-no-hover mt-6 rounded-full text-lg px-5 font-semibold hover:bg-amber-600 p-2">Register</button>
         </div>
 
-      </div>
+
+      </div >
 
       <div className="py-6 px-20 bg-gray-50">
         <h1 className=" text-3xl text-center font-medium">
@@ -108,10 +89,9 @@ export default function Home() {
         <div className=" grid grid-cols-2 mt-10 gap-10">
           {
             keyFeatures?.map((data: { title: string, desc: string }) => (
-              <div className="grid border p-6 rounded-lg shadow-xl">
+              <div className="grid border p-6 rounded-lg shadow-in transform transition-all duration-150 hover:shadow-md hover:-translate-y-2 ">
                 <h1 className="text-lg flex font-semibold items-center">
                   <FcMoneyTransfer className="w-6 h-6 mr-2" />
-
                   {data?.title}
                 </h1>
                 <span className="mt-2 text-sm">

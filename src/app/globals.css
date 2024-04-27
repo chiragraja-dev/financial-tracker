@@ -168,13 +168,14 @@
 
 
 
-/* .link-btn {
+.link-btn {
   padding: 0;
   margin: 0;
   border: none;
   background: none;
   cursor: pointer;
-} */
+  border-bottom: #ffffff 1px solid;
+}
 
 .link-btn {
   --primary-color: #ffffff;
@@ -201,25 +202,44 @@
   left: 0;
   bottom: -2px;
   background: var(--hovered-color);
-  height: 1px;
+  height: 2px;
   transition: 0.3s ease-out;
+  border-bottom: none;
 }
 
 .link-btn-p::before {
   position: absolute;
   /*   box-sizing: border-box; */
-  content: "Subscribe";
+  content: "Register";
   width: 0%;
   inset: 0;
   color: var(--hovered-color);
   overflow: hidden;
   transition: 0.3s ease-out;
+  border-bottom: none;
 }
 
 .link-btn:hover::after {
   width: 100%;
+  border-bottom: none;
 }
 
 .link-btn:hover .link-btn-p::before {
   width: 100%;
+  border-bottom: none;
+}
+
+.primary-button-no-hover {
+  background: linear-gradient(82.3deg,
+      rgb(245 158 11) 10.8%,
+      rgb(245 158 11) 94.3%);
+  color: black;
+}
+
+.primary-button-no-hover:hover {
+  background: #f89f06;
+}
+
+.shadow-in {
+  box-shadow: 3px 3px 21px 3px rgba(0, 0, 0, 0.05) inset;
 }
