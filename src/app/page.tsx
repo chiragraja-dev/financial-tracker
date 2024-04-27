@@ -1,113 +1,132 @@
 import Image from "next/image";
+import { title } from "process";
+import { FcMoneyTransfer } from "react-icons/fc";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { MdDoubleArrow } from "react-icons/md";
+import * as  Images from "@/assets/image"
+import * as  Icons from "@/assets/icon"
 
 export default function Home() {
+  const keyFeatures = [
+    {
+      "title": "Comprehensive Money Tracking",
+      "desc": "Easily track all your financial transactions in one place, including income, expenses, bills, and more. Stay organized and gain insights into your spending habits effortlessly."
+    },
+    {
+      "title": "Intuitive Budget Tracking",
+      "desc": "Set personalized budgets for different categories and track your spending against them in real-time. Receive alerts and notifications to help you stay within your budget and achieve your financial goals."
+    },
+    {
+      "title": "Investment Portfolio Management",
+      "desc": "Monitor and manage your investment portfolio with ease. Track the performance of your stocks, bonds, mutual funds, and other investments in real-time, and make informed decisions to optimize your returns."
+    },
+    {
+      "title": "Powerful Analysis Tools",
+      "desc": "Gain deeper insights into your financial health with powerful analysis tools. Visualize your financial data through customizable charts and graphs, identify trends, and uncover opportunities for savings and growth."
+    },
+    {
+      "title": "Goal Setting and Tracking",
+      "desc": "Set financial goals - whether it's saving for a vacation, buying a new home, or retiring comfortably - and track your progress over time. Receive actionable insights and recommendations to help you stay on track and achieve your goals faster."
+    },
+    {
+      "title": "Expense Categorization and Reporting",
+      "desc": "Automatically categorize your expenses and generate detailed reports to understand where your money is going. Identify areas where you can cut costs, optimize spending, and improve your overall financial well-being."
+    }
+  ]
+
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div className="landing-bg h-[600px]">
+        <div className="p-10 flex justify-between items-center">
+          <h1 className="text-3xl px-10 text-amber-400 select-none flex ">
+            FInTracker
+            <FaMoneyBillTrendUp className="ml-2" />
+          </h1>
+          <div className="flex gap-2">
+            {/* <button className="rounded-full bg-amber-400 text-gray-900 font-semibold px-5 h-10 hover:bg-gray-100 "> Login</button>
+            <button className="rounded-full bg-gray-100 text-gray-900 font-semibold px-5 h-10 hover:bg-amber-400">Register</button>
+          */}
+
+            <button className="primary-btn font-medium">
+              <span className="primary-btn-content">Login </span>
+            </button>
+            <button className="sec-btn font-medium">
+              <span className="sec-btn-content">Register </span>
+            </button>
+          </div>
+        </div>
+        <div className="py-20 px-20  text-gray-100 w-[70%]">
+          <div className="text-5xl 2xl:text-6xl mb-10 leading-snug"> Navigate your financial journey effortlessly </div>
+          <div className="text-3xl 2xl:text-4xl mt-4">
+            track, analyze, and thrive with our comprehensive financial tracker
+          </div>
+
         </div>
       </div>
+      <div className="py-16 text-center px-28 bg-gray-50 text-gray-800">
+        <h1 className="text-3xl font-medium">What is the <b className="text-amber-400">FInTracker </b>?</h1>
+        <p className="pt-6 leading-relaxed  text-lg px-10	">Our product is a comprehensive financial tracker designed to empower users on their financial journey. With its intuitive interface, users can effortlessly track, analyze, and optimize their finances, gaining valuable insights along the way. By unlocking the power of informed decision-making, our intelligent tracking solution streamlines financial management, allowing users to make informed choices with confidence. Say goodbye to chaos and confusion – our advanced tracker transforms financial data into clarity, ensuring users stay on top of their finances with ease, enabling them to thrive financially.</p>
+      </div>
+      <hr />
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="landing-bg-sec h-80">
+        <div className=" flex justify-between items-center">
+          <div className=" px-20  text-white text-4xl w-[70%]">
+            Join now to take control of your finances. Sign up for free and start managing your money smarter.
+            <br />
+            <button className="link-btn ">
+              <p className="link-btn-p text-white underline hover:no-underline my-2">Subscribe</p>
+            </button>
+
+          </div>
+          <div className="mx-20 ">
+            <Image src={Icons?.Icons?.Homesvg} alt={""} className="w-80 mt-4 h-64"></Image>
+          </div>
+          {/* <div className="bg-amber-200 h-[400px] mx-20 -translate-y-14">
+            <div className="">
+              hello
+            </div>
+          </div> */}
+          {/* <div className=" flex flex-col gap-8">
+            <button className="primary-btn font-medium">
+              <span className="primary-btn-content p-10 h-10">Login </span>
+            </button>
+            <button className="sec-btn font-medium">
+              <span className="sec-btn-content">Register </span>
+            </button>
+          </div> */}
+        </div>
+
       </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <div className="py-6 px-20 bg-gray-50">
+        <h1 className=" text-3xl text-center font-medium">
+          Key Fetures
+        </h1>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        <div className=" grid grid-cols-2 mt-10 gap-10">
+          {
+            keyFeatures?.map((data: { title: string, desc: string }) => (
+              <div className="grid border p-6 rounded-lg shadow-xl">
+                <h1 className="text-lg flex font-semibold items-center">
+                  <FcMoneyTransfer className="w-6 h-6 mr-2" />
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+                  {data?.title}
+                </h1>
+                <span className="mt-2 text-sm">
+                  {data?.desc}
+                </span>
+              </div>
+            ))
+          }
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+
+          <div>
+
+          </div>
+        </div>
       </div>
-    </main>
+    </>
   );
 }
