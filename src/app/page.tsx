@@ -5,6 +5,7 @@ import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { MdDoubleArrow } from "react-icons/md";
 import * as  Images from "@/assets/image"
 import * as  Icons from "@/assets/icon"
+import Link from "next/link";
 
 export default function Home() {
   const keyFeatures = [
@@ -44,13 +45,9 @@ export default function Home() {
             <FaMoneyBillTrendUp className="ml-2" />
           </h1>
           <div className="flex gap-2">
-            {/* <button className="rounded-full bg-amber-400 text-gray-900 font-semibold px-5 h-10 hover:bg-gray-100 "> Login</button>
-            <button className="rounded-full bg-gray-100 text-gray-900 font-semibold px-5 h-10 hover:bg-amber-400">Register</button>
-          */}
-
-            <button className="primary-btn font-medium">
-              <span className="primary-btn-content">Login </span>
-            </button>
+            <Link className="primary-btn font-medium " href={"/login"}>
+              <span className="primary-btn-content ">Login </span>
+            </Link>
             <button className="sec-btn font-medium">
               <span className="sec-btn-content">Register </span>
             </button>
@@ -71,25 +68,24 @@ export default function Home() {
       <hr />
 
       <div className="landing-bg-sec h-80">
-        <div className=" px-28 py-16 flex flex-col justify-center items-center text-white text-4xl w-[100%] mt-7 text-center tracking-wide">
+        <div className=" px-28 py-14 flex flex-col justify-center items-center text-white text-4xl w-[100%] text-center tracking-wide leading-snug">
           <p> Take control of your finances now. Sign up for free and start managing your money smarter.</p>
-
           <p className="mt-1"> Click the button below to get started.</p>
-          <button className="primary-button-no-hover mt-6 rounded-full text-lg px-5 font-semibold hover:bg-amber-600 p-2">Register</button>
+          <button className="primary-button-no-hover mt-4 rounded-full text-lg px-5 font-semibold hover:bg-amber-600 p-2">Register</button>
         </div>
 
 
       </div >
 
-      <div className="py-6 px-20 bg-gray-50">
+      <div className="py-6 px-20 bg-gray-50 pb-20">
         <h1 className=" text-3xl text-center font-medium">
           Key Fetures
         </h1>
 
         <div className=" grid grid-cols-2 mt-10 gap-10">
           {
-            keyFeatures?.map((data: { title: string, desc: string }) => (
-              <div className="grid border p-6 rounded-lg shadow-in transform transition-all duration-150 hover:shadow-md hover:-translate-y-2 ">
+            keyFeatures?.map((data: { title: string, desc: string }, index) => (
+              <div key={index} className="grid border p-6 rounded-lg shadow-in transform transition-all duration-200 hover:shadow-md hover:-translate-y-2 ">
                 <h1 className="text-lg flex font-semibold items-center">
                   <FcMoneyTransfer className="w-6 h-6 mr-2" />
                   {data?.title}
@@ -101,11 +97,10 @@ export default function Home() {
             ))
           }
 
-
-          <div>
-
-          </div>
         </div>
+      </div>
+      <div className="clip-path bg-gray-900 p-10 py-20 ">
+        helli
       </div>
     </>
   );

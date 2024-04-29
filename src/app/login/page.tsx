@@ -1,9 +1,11 @@
 import React from 'react'
-
-const page = () => {
+import LoginPage from '@/components/loginPage'
+const Login = () => {
     return (
-        <div>page</div>
+        <div className=' h-full'>
+            <LoginPage />
+        </div>
     )
 }
 
-export default page
+export default Login
