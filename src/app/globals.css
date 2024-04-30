@@ -258,3 +258,21 @@
 .login-shadow {
   box-shadow: -10px 13px 255px -10px rgba(0, 0, 0, 0.25);
 }
+
+.divider {
+  position: relative;
+  margin: 20px 0;
+  border: none;
+  border-top: 2px solid #333;
+  text-align: center;
+}
+
+.divider::after {
+  content: "Text Here";
+  position: absolute;
+  top: -10px;
+  background-color: white;
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
