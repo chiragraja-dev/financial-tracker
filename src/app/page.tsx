@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="landing-bg h-[600px]">
+      <div className="landing-bg h-screen">
         <div className="p-10 flex justify-between items-center">
           <h1 className="text-3xl px-10 text-amber-400 select-none flex cursor-pointer">
             FInTracker
@@ -61,7 +61,7 @@ export default function Home() {
 
         </div>
       </div>
-      <div className="py-16 text-center px-28 bg-gray-50 text-gray-800">
+      {/* <div className="py-16 text-center px-28 bg-gray-50 text-gray-800">
         <h1 className="text-3xl font-medium">What is the <b className="text-amber-400">FInTracker </b>?</h1>
         <p className="pt-6 leading-relaxed  text-lg px-10	">Our product is a comprehensive financial tracker designed to empower users on their financial journey. With its intuitive interface, users can effortlessly track, analyze, and optimize their finances, gaining valuable insights along the way. By unlocking the power of informed decision-making, our intelligent tracking solution streamlines financial management, allowing users to make informed choices with confidence. Say goodbye to chaos and confusion – our advanced tracker transforms financial data into clarity, ensuring users stay on top of their finances with ease, enabling them to thrive financially.</p>
       </div>
@@ -101,7 +101,7 @@ export default function Home() {
       </div>
       <div className="clip-path bg-gray-900 p-10 py-20 ">
         helli
-      </div>
+      </div> */}
     </>
   );
 }
