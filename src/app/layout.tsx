@@ -18,8 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
-        <Toaster />
+        <div className="hidden lg:block">
+          {children}
+          <Toaster />
+        </div>
+        <div className="lg:hidden text-center flex justify-center items-center ">
+          Mobile view is not available
+        </div>
       </body>
     </html>
   );

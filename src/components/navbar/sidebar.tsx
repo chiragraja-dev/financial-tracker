@@ -1,33 +1,47 @@
 import Link from 'next/link'
 import { title } from 'process';
 import React from 'react'
-import { FaMoneyBillTrendUp } from 'react-icons/fa6';
+import { FaChartPie, FaMoneyBillTransfer, FaMoneyBillTrendUp } from 'react-icons/fa6';
 import { MdHome, MdMenu } from "react-icons/md";
-import { BsGraphUp } from "react-icons/bs";
+import { BsGraphUp, BsGraphUpArrow } from "react-icons/bs";
 import { GiPayMoney, GiReceiveMoney } from "react-icons/gi";
 
 import * as Icon from "@/assets/icon"
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const SideBar = () => {
 
+    const pathName = usePathname()
 
+    // console.log(pathName)
     const sidebar = [
         {
             icon: <MdHome className='w-6 h-5 ' />,
             title: "Dashboard",
-            navigate: "/tracker"
+            navigate: "/dashboard"
         },
         {
-            icon: <GiReceiveMoney className='w-6 h-5 ' />,
-            title: "Income",
-            navigate: "/income"
-        },
-        {
-            icon: <GiPayMoney className=' w-6 h-5 mt-1' />,
+            icon: <FaMoneyBillTransfer className=' w-6 h-5 mt-1' />,
             title: "Transcation",
             navigate: "/transcation"
         },
+        {
+            icon: <GiReceiveMoney className='w-6 h-5 ' />,
+            title: "Budgets ans Income",
+            navigate: "/budgets"
+        },
+        {
+            icon: <BsGraphUpArrow className='w-6 h-5 ' />,
+            title: "Investment",
+            navigate: "/investment"
+        },
+        {
+            icon: <FaChartPie className='w-6 h-5 ' />,
+            title: "Analysis",
+            navigate: "/analysis"
+        },
+
     ]
 
     return (
@@ -41,21 +55,21 @@ const SideBar = () => {
                     <FaMoneyBillTrendUp className="ml-2 -mt-1" />
                 </h1>
                 <div className=" my-3"></div>
-                <div className="mt-4 p-4 py-7">
-                    <ul>
+                <div className="mt-4 py-7">
+                    <ul className=' space-y-5'>
 
                         {
                             sidebar.map((data, index) => (
-                                <>
-                                    <li>
-                                        <Link href={data.navigate} className=" px-4 py-2 my-5 text-white hover:bg-amber-400 hover:text-slate-800 rounded-2xl font-medium flex items-center gap-2 ">
-                                            {/* <Image src={data.icon} alt={''} className='w-6 h-6 hover:fill-slate-500 fill-amber-500'></Image> */}
-                                            <span>{data.icon}</span>
-                                            <span> {data?.title}</span>
-                                        </Link>
-                                    </li>
 
-                                </>
+                                <li className=' ' key={index}>
+                                    <Link href={data.navigate} className={` button-sidebar   text-white  hover:text-slate-800 flex items-center px-10 py-4  ${data.navigate == pathName ? " font-bold" : " font-light"}`}>
+                                        {/* <Image src={data.icon} alt={''} className='w-6 h-6 hover:fill-slate-500 fill-amber-500'></Image> */}
+                                        <span>{data.icon}</span>
+                                        <span className='ml-2'> {data?.title}</span>
+                                    </Link>
+                                </li>
+
+
                             ))
                         }
 
