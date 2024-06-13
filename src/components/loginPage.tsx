@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import signIn from '@/firebase/login'
+import { redirect } from 'next/navigation'
 
 
 const LoginPage = () => {
@@ -56,6 +57,7 @@ const LoginPage = () => {
                 description: "Stay connected.. ",
 
             })
+            redirect('/dashboard')
         }
     }
 
