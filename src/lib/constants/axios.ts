@@ -1,78 +1,50 @@
-import { AxiosRequestConfig } from 'axios';
-import Axios, { AxiosObservable } from 'axios-observable';
+// firebaseService.js
+import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
+import { from, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { db } from '../../../config';
 
-const axiosInstance = Axios.create({});
+const collectionName = "items";
 
-// response interceptor
-axiosInstance.interceptors.response.use(
-    (response) => {
-        return Promise.resolve(response);
-    },
-    (error) => {
-        if (error?.response?.status === 401) {
-            window.location.href = '/login';
-            localStorage.removeItem("practitionerID")
-        }
+const addItem = (item: any, collectionName: string) => {
+    return from(addDoc(collection(db, collectionName), item)).pipe(
+        map((docRef) => ({ id: docRef.id, ...item })),
+        catchError((error) => of({ error }))
+    );
+};
 
-        return Promise.reject(error);
-    }
-);
+const getItems = (collectionName: string) => {
+    return from(getDocs(collection(db, collectionName))).pipe(
+        map((querySnapshot) => {
+            const items: any[] = [];
+            querySnapshot.forEach((doc) => {
+                items.push({ id: doc.id, ...doc.data() });
+            });
+            return items;
+        }),
+        catchError((error) => of({ error }))
+    );
+};
 
-axiosInstance.interceptors.request.use(
-    (config: any) => {
-        const token = sessionStorage.getItem('token');
-        if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`;
-        }
-        return Promise.resolve(config);
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+const updateItem = (id: string, updatedItem: any, collectionName: string) => {
+    const docRef = doc(db, collectionName, id);
+    return from(updateDoc(docRef, updatedItem)).pipe(
+        map(() => ({ id, ...updatedItem })),
+        catchError((error) => of({ error }))
+    );
+};
 
-function get<T>(
-    url: string,
-    params?: AxiosRequestConfig<any>
-): AxiosObservable<T> {
-    return axiosInstance.get(url, params);
-}
-
-function post<T>(
-    url: string,
-    body?: any,
-    params?: AxiosRequestConfig<any>
-): AxiosObservable<T> {
-    return axiosInstance.post(url, body, params);
-}
-
-function put<T>(
-    url: string,
-    body?: any,
-    params?: AxiosRequestConfig<any>
-): AxiosObservable<T> {
-    return axiosInstance.put(url, body, params);
-}
-
-function del<T>(
-    url: string,
-    params?: AxiosRequestConfig<any>
-): AxiosObservable<T> {
-    return axiosInstance.delete(url, params);
-}
-
-function patch<T>(
-    url: string,
-    body?: any,
-    params?: AxiosRequestConfig<any>
-): AxiosObservable<T> {
-    return axiosInstance.patch(url, body, params);
-}
+const deleteItem = (id: string, collectionName: string) => {
+    const docRef = doc(db, collectionName, id);
+    return from(deleteDoc(docRef)).pipe(
+        map(() => ({ id })),
+        catchError((error) => of({ error }))
+    );
+};
 
 export default {
-    get,
-    post,
-    patch,
-    put,
-    del,
+    addItem,
+    getItems,
+    updateItem,
+    deleteItem,
 };

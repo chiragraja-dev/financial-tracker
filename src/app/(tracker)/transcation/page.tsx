@@ -37,7 +37,7 @@ const Transcation = () => {
     return (
         <>
             <div className='flex justify-between px-5'>
-                <Select onValueChange={setTranscation} >
+                {/* <Select onValueChange={setTranscation} >
                     <SelectTrigger className="w-[220px] bg-amber-50">
                         <SelectValue placeholder="Select Transaction type" />
                     </SelectTrigger>
@@ -45,10 +45,10 @@ const Transcation = () => {
                         <SelectItem value="Daily">Daily</SelectItem>
                         <SelectItem value="Monthly">Monthly</SelectItem>
                     </SelectContent>
-                </Select>
-                <div className=' underline hover:text-sky-500 cursor-pointer'>View History</div>
+                </Select> */}
+                <div></div>
+                <div className=' underline hover:text-sky-500 cursor-pointer'>View Transcation</div>
             </div>
-
             <DailyTranscation />
         </>
     )

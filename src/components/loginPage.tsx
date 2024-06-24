@@ -18,8 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import signIn from '@/firebase/login'
-import { redirect } from 'next/navigation'
-
+import { useRouter } from 'next/navigation'
 
 const LoginPage = () => {
     const FormSchema = z.object({
@@ -28,6 +27,7 @@ const LoginPage = () => {
             message: "Password must be at least 8 characters.",
         }),
     })
+    const router = useRouter()
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -57,7 +57,10 @@ const LoginPage = () => {
                 description: "Stay connected.. ",
 
             })
-            redirect('/dashboard')
+
+            router.push('/dashboard')
+            // redirect('/dashboard')
+
         }
     }
 

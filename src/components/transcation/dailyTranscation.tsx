@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from '../ui/input';
 import {
     Card,
@@ -26,6 +26,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FaPlus } from 'react-icons/fa';
 import { db } from '../../../config';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useTranscationRepositiory } from '@/store/transcationStore/transcation.repository';
+import { useObservable } from '@/lib/hooks/useObservable';
+import { toast } from '../ui/use-toast';
 
 
 const FormSchema = z.object({
@@ -39,6 +42,12 @@ const FormSchema = z.object({
 
 const DailyTransaction = () => {
     const [date, setDate] = useState<any>();
+
+
+    const transcationRepository = useTranscationRepositiory();
+    const transcationState = useObservable(
+        transcationRepository.getTranscationObjervable()
+    );
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -64,29 +73,34 @@ const DailyTransaction = () => {
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
         try {
+            if (date) {
+                if (Array.isArray(data.transactions)) {
+                    const currentDate = new Date().toISOString();
+                    const transactionsWithDate = data.transactions.map((transaction: any) => ({
+                        ...transaction,
+                        date: currentDate,
+                    }));
 
-            const transactionsWithDate = data.transactions.map((transaction: any) => ({
-                ...transaction,
-                date: date,
-            }));
+                    transcationRepository?.postDailyTranscation(transactionsWithDate, "Transcation");
+                } else {
+                    throw new Error("Expected 'transactions' to be an array");
+                }
+            } else {
+                toast({
+                    variant: "destructive",
+                    // title: "Please Select The Date",
+                    description: "Please Select The Date",
 
-            try {
-                const docRef = await addDoc(collection(db, "Transcation"), transactionsWithDate[0]);
-                console.log("Document written with ID: ", docRef.id);
-            } catch (error) {
-                console.error("Error adding document: ", error);
+                })
             }
-            console.log('Form Submitted');
-            console.log(transactionsWithDate); // Log the transactions with the appended date
         } catch (error) {
             console.error('Error during form submission', error);
         }
     };
 
-
     return (
         <>
-            <div className='mt-5 pt-5 border-t border-orange-200 px-5 flex gap-3'>
+            <div className='mt-5 pt-5 border-orange-200 px-5 flex gap-3'>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className=' flex gap-2'>
 
@@ -120,9 +134,9 @@ const DailyTransaction = () => {
                                 </Popover>
                             </div>
                         </div>
-                        <div className='border shadow-lg w-full'>
+                        <div className=' w-full'>
                             <div {...form}>
-                                <div onSubmit={form.handleSubmit(onSubmit)} className='col-span-5 text-black border'>
+                                <div onSubmit={form.handleSubmit(onSubmit)} className='col-span-5 text-black '>
                                     <Card className="w-full">
                                         <CardHeader>
                                             <CardTitle>Add Transaction of {date ? date.toDateString() : "________"}</CardTitle>
@@ -211,3 +225,5 @@ const DailyTransaction = () => {
 }
 
 export default DailyTransaction;
+
+
