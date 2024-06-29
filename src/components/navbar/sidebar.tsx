@@ -23,13 +23,13 @@ const SideBar = () => {
         },
         {
             icon: <FaMoneyBillTransfer className=' w-6 h-5 mt-1' />,
-            title: "Transcation",
-            navigate: "/transcation"
+            title: "Transaction",
+            navigate: "/transaction"
         },
         {
             icon: <GiReceiveMoney className='w-6 h-5 ' />,
-            title: "Budgets ans Income",
-            navigate: "/budgets"
+            title: "Budgets and Income",
+            navigate: "/budget"
         },
         {
             icon: <BsGraphUpArrow className='w-6 h-5 ' />,

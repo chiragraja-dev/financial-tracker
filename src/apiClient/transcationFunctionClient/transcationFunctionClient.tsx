@@ -1,5 +1,5 @@
 import Axios from '../../lib/constants/axios';
-import { from, Observable, forkJoin } from 'rxjs';
+import { from, Observable, forkJoin, firstValueFrom } from 'rxjs';
 
 
 export const transcationApiClient = () => {
@@ -11,13 +11,46 @@ export const transcationApiClient = () => {
         return forkJoin(requests);
     };
 
-    return {
-        addDailyTranscation,
+    // yourWhereField', ' == ', 'yourWhereValue'
+    const getTransaction = async (collectionName: string, value?: string | Date): Promise<Observable<any>> => {
+        try {
+            const items = await Axios.getItemsOrderBy(collectionName, 'date', 'desc', 'date', '==', value);
+            debugger
+            return items
+        } catch (error: any) {
+            return error
+        }
+    };
+
+    const getTransactionById = async (collectionName: string, value?: string | Date): Promise<Observable<any>> => {
+        try {
+            const items = await Axios.getItemsOrderBy(collectionName, 'date', 'desc', 'date', '==', value);
+            debugger
+            return items
+        } catch (error: any) {
+            return error
+        }
+    };
+
+    const getAllCategory = async (collectionName: string): Promise<Observable<any>> => {
+        try {
+            const items = await Axios.getItems(collectionName);
+            debugger
+            return items
+        } catch (error: any) {
+            return error
+        }
     };
 
 
     return {
         addDailyTranscation,
+        getTransaction,
+        getAllCategory,
+        getTransactionById
     };
+
+
+
 }
 

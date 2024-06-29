@@ -51,6 +51,7 @@ const LoginPage = () => {
 
             })
         } else {
+            router.push('/dashboard')
             toast({
                 variant: "success",
                 title: "You are successfully logged in",
@@ -58,7 +59,7 @@ const LoginPage = () => {
 
             })
 
-            router.push('/dashboard')
+
             // redirect('/dashboard')
 
         }

@@ -7,11 +7,17 @@ import {
 import { boolean } from 'zod';
 
 const initalTranscationubjectStateLoader: TranscationtateLoaderProps = {
-    postranscationLoader: false
+    postranscationLoader: false,
+    getTransactionLoader: false,
+    getCategoryLoader: false
 }
 
 export const initialSubjectTranscationState: InitalTranscationubjectState = {
     loader: initalTranscationubjectStateLoader,
+    postTranscation: undefined,
+    getTransaction: undefined,
+    getCategory: undefined,
+    getTransactionById: undefined
 }
 
 const transcationSubject = new BehaviorSubject<InitalTranscationubjectState>(
@@ -47,6 +53,9 @@ export const useTranscationObservable = () => {
 
     type transacationLoaderType = {
         postranscationLoader: boolean;
+        getTransactionLoader: boolean;
+        getCategoryLoader: boolean
+
     }
 
     return {

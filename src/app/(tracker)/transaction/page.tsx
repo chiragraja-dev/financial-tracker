@@ -1,33 +1,8 @@
 "use client"
 import React, { useState } from 'react'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import { CalendarIcon } from "@radix-ui/react-icons"
-import { format } from "date-fns"
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
-import { Label } from '@/components/ui/label'
 import DailyTranscation from '@/components/transcation/dailyTranscation'
+import Link from 'next/link'
 const Transcation = () => {
     const [transcation, setTranscation] = useState<string | any>()
     const [date, setDate] = React.useState<Date>()
@@ -47,7 +22,7 @@ const Transcation = () => {
                     </SelectContent>
                 </Select> */}
                 <div></div>
-                <div className=' underline hover:text-sky-500 cursor-pointer'>View Transcation</div>
+                <Link className=' underline hover:text-sky-500 cursor-pointer' href={'/view-transcation'}>View Transcation</Link >
             </div>
             <DailyTranscation />
         </>
