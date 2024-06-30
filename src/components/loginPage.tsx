@@ -41,8 +41,11 @@ const LoginPage = () => {
     async function onSubmit(data: z.infer<typeof FormSchema>) {
 
         const { result, error } = await signIn(data?.email, data?.password);
-        console.log(result, "res")
+        console.log(result, "------<>-----res")
         console.log(error, "error")
+        sessionStorage.setItem('user', JSON.stringify(result?.user))
+        // sessionStorage.setItem('accessToken', result?.user?.accessToken)
+        // sessionStorage.setItem('uid', result?.)
         if (error) {
             toast({
                 variant: "destructive",
@@ -56,7 +59,6 @@ const LoginPage = () => {
                 variant: "success",
                 title: "You are successfully logged in",
                 description: "Stay connected.. ",
-
             })
 
 

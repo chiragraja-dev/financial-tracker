@@ -50,27 +50,29 @@ const ViewTranscation = () => {
                                             <div>Comments</div>
                                             <div>Receiver Name</div>
                                         </div>
+
                                         {
-                                            transcationState?.getTransactionById?.map((data: any) => (
-                                                <>
+                                            transcationState?.loader?.getTransactionLoader ? <>Loading</> :
+                                                transcationState?.getTransactionById?.map((data: any) => (
+                                                    <>
 
-                                                    <div className='grid grid-cols-4 border-t'>
+                                                        <div className='grid grid-cols-4 border-t'>
 
-                                                        <div className='mt-5 '>
-                                                            {data?.amount}
+                                                            <div className='mt-5 '>
+                                                                {data?.amount}
+                                                            </div>
+                                                            <div className='mt-5 '>
+                                                                {data?.category}
+                                                            </div>
+                                                            <div className='mt-5 '>
+                                                                {data?.comments}
+                                                            </div>
+                                                            <div className='mt-5 '>
+                                                                {data?.reciever_name}
+                                                            </div>
                                                         </div>
-                                                        <div className='mt-5 '>
-                                                            {data?.category}
-                                                        </div>
-                                                        <div className='mt-5 '>
-                                                            {data?.comments}
-                                                        </div>
-                                                        <div className='mt-5 '>
-                                                            {data?.reciever_name}
-                                                        </div>
-                                                    </div>
-                                                </>
-                                            ))
+                                                    </>
+                                                ))
                                         }
 
                                     </AccordionContent>

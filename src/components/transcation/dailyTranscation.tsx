@@ -25,7 +25,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaPlus } from 'react-icons/fa';
-import { db } from '../../../config';
+import { db, firebase_app } from '../../../config';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useTranscationRepositiory } from '@/store/transcationStore/transcation.repository';
 import { useObservable } from '@/lib/hooks/useObservable';
@@ -38,6 +38,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { getAuth } from 'firebase/auth';
 
 
 
@@ -55,6 +56,8 @@ const FormSchema = z.object({
 const DailyTransaction = () => {
     const [date, setDate] = useState<any>();
     const router = useRouter()
+    const auth = getAuth(firebase_app)
+
 
     const transcationRepository = useTranscationRepositiory();
     const transcationState = useObservable(
@@ -76,6 +79,10 @@ const DailyTransaction = () => {
     }
     );
 
+    const [user, setUser] = useState(null);
+
+
+
 
 
     const addFields = () => {
@@ -85,12 +92,13 @@ const DailyTransaction = () => {
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
         try {
-            if (date) {
+            if (date && auth?.currentUser?.uid) {
                 if (Array.isArray(data.transactions)) {
                     const currentDate = new Date(date).toISOString();
                     const transactionsWithDate = data.transactions.map((transaction: any) => ({
                         ...transaction,
                         date: currentDate,
+                        userId: auth?.currentUser?.uid
                     }));
 
                     transcationRepository?.postDailyTranscation(transactionsWithDate, "Transcation").add({
@@ -117,7 +125,6 @@ const DailyTransaction = () => {
         transcationRepository?.getCategory("Category")
     }, [])
 
-    console.log("--------->", transcationState?.getCategory)
 
     return (
         <>
